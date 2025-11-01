@@ -1,195 +1,5 @@
 import React, { useState } from 'react';
-import { styled } from 'styled-components';
-
-const HeroContainer = styled.div`
-  display: flex;
-  gap: 30px;
-  padding: 40px;
-  width: 95%;
-  margin: 0 auto;
-  margin-top: -6px;
-`;
-
-const ImagePlaceholder = styled.div`
-  width: 400px;
-  height: 700px;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
-`;
-
-const Card = styled.div`
-  flex: 1;
-  border: 6px solid black;
-  padding: 40px;
-  background-color: white;
-  min-height: 600px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-`;
-
-const CardTitle = styled.h2`
-  margin: 0;
-  color: black;
-  font-size: 6rem;
-  font-weight: 500;
-  font-family: 'Times New Roman', Times, serif;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-feature-settings: "lnum";
-  font-style: normal;
-  line-height: 1.2;
-  text-align: left;
-  align-self: flex-start;
-`;
-
-const InputContainer = styled.div`
-  display: flex;
-  gap: 20px;
-  margin-top: 20px;
-`;
-
-const UrlInput = styled.input`
-  flex: 1;
-  padding: 15px;
-  border: 3px solid black;
-  font-size: 1.1rem;
-  outline: none;
-  
-  &:focus {
-    border-color: #000;
-  }
-`;
-
-const CheckButton = styled.button`
-  padding: 15px 40px;
-  background-color: black;
-  color: white;
-  border: none;
-  font-size: 1.1rem;
-  cursor: pointer;
-  font-family: 'Times New Roman', Times, serif;
-  font-weight: 500;
-  transition: transform 0.2s;
-
-  &:hover {
-    transform: translateY(-2px);
-  }
-`;
-
-const ResultsSection = styled.div`
-  width: 90%;
-  margin: 30px auto;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-`;
-
-const SummaryCard = styled.div`
-  border: 6px solid black;
-  padding: 30px;
-  background-color: white;
-`;
-
-const SummaryTitle = styled.h2`
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 2.2rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin: 0 0 20px 0;
-  text-align: left;
-`;
-
-const SummaryText = styled.p`
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin: 0;
-  text-align: left;
-`;
-
-const KeywordsContainer = styled.div`
-  margin-top: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;  // Slightly increased gap for better spacing between rectangular tags
-  justify-content: flex-start;
-  align-items: flex-start;
-`;
-
-const Keyword = styled.span`
-  background-color: black;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 0;  // Changed from 20px to 0 to make it rectangular
-  font-size: 0.9rem;
-  font-family: 'Times New Roman', Times, serif;  // Added Times New Roman font
-  letter-spacing: 0.05em;  // Added slight letter spacing for better readability
-`;
-
-const AdsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const AdCard = styled.div`
-  border: 4px solid black;
-  padding: 20px;
-  background-color: white;
-  transition: transform 0.2s;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  text-align: left;
-
-  &:hover {
-    transform: translateY(-5px);
-  }
-`;
-
-const AdTitle = styled.h3`
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 1.5rem;
-  font-weight: 500;
-  margin: 0;
-  text-align: left;
-`;
-
-const AdDescription = styled.p`
-  font-size: 1rem;
-  line-height: 1.5;
-  margin: 0;
-  text-align: left;
-`;
-
-const AdSimilarity = styled.div`
-  font-size: 0.9rem;
-  color: #666;
-  margin-top: auto;
-  padding-top: 10px;
-  border-top: 1px solid #eee;
-  text-align: left;
-`;
-
-const AdExplanation = styled.div`
-  font-size: 1.08rem;
-  font-family: 'Times New Roman', Times, serif;
-  color: #fff;
-  margin-top: 16px;
-  text-align: left;
-  background: #111;
-  padding: 18px 20px;
-  border-radius: 0;
-  border: 2px solid #000;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  line-height: 1.7;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-`;
+import { Sparkles, Zap, Target } from 'lucide-react';
 
 function Hero() {
   const [url, setUrl] = useState('');
@@ -229,75 +39,162 @@ function Hero() {
   };
 
   return (
-    <>
-      <HeroContainer>
-        <ImagePlaceholder />
-        <Card>
-          <CardTitle>Check the ads which are for your webpage</CardTitle>
-          <InputContainer>
-            <UrlInput 
-              type="url" 
-              placeholder="Enter your webpage URL"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              disabled={loading}
-            />
-            <CheckButton 
-              onClick={handleCheck}
-              disabled={loading}
-            >
-              {loading ? 'Checking...' : 'Check'}
-            </CheckButton>
-          </InputContainer>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      {/* Animated Background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
+        <div className="absolute bottom-1/4 left-1/2 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-2000"></div>
+      </div>
+
+      {/* Hero Section */}
+      <div className="relative z-10 container mx-auto px-6 py-20">
+        <div className="max-w-4xl mx-auto text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/20 backdrop-blur-sm border border-purple-500/30 rounded-full mb-6">
+            <Sparkles className="w-4 h-4 text-purple-300" />
+            <span className="text-purple-200 text-sm font-medium">AI-Powered Ad Matching</span>
+          </div>
+          
+          <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
+            Find Perfect Ads
+            <span className="block bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text">
+              For Your Content
+            </span>
+          </h1>
+          
+          <p className="text-xl text-slate-300 mb-12 max-w-2xl mx-auto">
+            Our AI analyzes your webpage and matches it with the most relevant ads using advanced machine learning
+          </p>
+
+          {/* Input Section */}
+          <div className="relative max-w-2xl mx-auto">
+            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-25"></div>
+            <div className="relative bg-slate-800/90 backdrop-blur-xl p-3 rounded-2xl border border-slate-700/50 shadow-2xl">
+              <div className="flex gap-3">
+                <input
+                  type="url"
+                  placeholder="Enter your webpage URL..."
+                  value={url}
+                  onChange={(e) => setUrl(e.target.value)}
+                  disabled={loading}
+                  className="flex-1 px-6 py-4 bg-slate-900/50 border border-slate-600/50 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-purple-500 transition-all text-lg"
+                  onKeyPress={(e) => e.key === 'Enter' && handleCheck()}
+                />
+                <button
+                  onClick={handleCheck}
+                  disabled={loading}
+                  className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold rounded-xl transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-lg"
+                >
+                  {loading ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      Analyzing...
+                    </>
+                  ) : (
+                    <>
+                      <Zap className="w-5 h-5" />
+                      Analyze
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
 
           {error && (
-            <div style={{ color: 'red', marginTop: '20px' }}>
-              Error: {error}
+            <div className="mt-6 p-4 bg-red-500/20 backdrop-blur-sm border border-red-500/50 rounded-xl text-red-200">
+              {error}
             </div>
           )}
-        </Card>
-      </HeroContainer>
+        </div>
 
-      {result && (
-        <ResultsSection>
-          {/* Summary Card */}
-          <SummaryCard>
-            <SummaryTitle>Webpage Summary</SummaryTitle>
-            <SummaryText>{result.summary}</SummaryText>
-            <KeywordsContainer>
-              {result.keywords.map((keyword, index) => (
-                <Keyword key={index}>{keyword}</Keyword>
-              ))}
-            </KeywordsContainer>
-          </SummaryCard>
+        {/* Results Section */}
+        {result && (
+          <div className="max-w-6xl mx-auto space-y-8 animate-in fade-in duration-700">
+            {/* Summary Card */}
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition"></div>
+              <div className="relative bg-slate-800/90 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/50 shadow-2xl">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl">
+                    <Target className="w-6 h-6 text-white" />
+                  </div>
+                  <h2 className="text-3xl font-bold text-white">Webpage Analysis</h2>
+                </div>
+                
+                <p className="text-lg text-slate-300 leading-relaxed mb-6">
+                  {result.summary}
+                </p>
+                
+                <div className="flex flex-wrap gap-3">
+                  {result.keywords.map((keyword, index) => (
+                    <span
+                      key={index}
+                      className="px-4 py-2 bg-gradient-to-r from-purple-600/30 to-pink-600/30 backdrop-blur-sm border border-purple-500/30 rounded-lg text-purple-200 font-medium hover:from-purple-600/50 hover:to-pink-600/50 transition-all"
+                    >
+                      {keyword}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
 
-          {/* Recommended Ads Section */}
-          <SummaryCard>
-            <SummaryTitle>Recommended Ads</SummaryTitle>
-            <AdsGrid>
-              {result.matchedAds && result.matchedAds.map((ad) => (
-                <AdCard key={ad._id}>
-                  <AdTitle>{ad.title}</AdTitle>
-                  <AdDescription>{ad.description}</AdDescription>
-                  <KeywordsContainer>
-                    {ad.keywords.map((keyword, index) => (
-                      <Keyword key={index}>{keyword}</Keyword>
-                    ))}
-                  </KeywordsContainer>
-                  <AdSimilarity>
-                    Match Score: {Math.round(ad.similarity * 100)}%
-                  </AdSimilarity>
-                  <div style={{marginTop: '8px', marginBottom: '0', fontWeight: 'bold', color: '#111', fontFamily: 'Times New Roman, Times, serif', fontSize: '1.08rem', textAlign: 'left', paddingLeft: '0', width: '100%'}}>Why this Ad?</div>
-                  <AdExplanation>
-                    {ad.explanation}
-                  </AdExplanation>
-                </AdCard>
-              ))}
-            </AdsGrid>
-          </SummaryCard>
-        </ResultsSection>
-      )}
-    </>
+            {/* Recommended Ads */}
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition"></div>
+              <div className="relative bg-slate-800/90 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/50 shadow-2xl">
+                <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
+                  <Sparkles className="w-8 h-8 text-purple-400" />
+                  Recommended Ads
+                </h2>
+                
+                <div className="grid md:grid-cols-2 gap-6">
+                  {result.matchedAds && result.matchedAds.map((ad, index) => (
+                    <div
+                      key={ad._id}
+                      className="group/card relative bg-slate-900/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-700/50 hover:border-purple-500/50 transition-all hover:transform hover:scale-[1.02] shadow-lg"
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      <div className="absolute top-4 right-4 px-3 py-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full text-white text-sm font-bold">
+                        {Math.round(ad.similarity * 100)}% Match
+                      </div>
+                      
+                      <h3 className="text-2xl font-bold text-white mb-3 pr-20">
+                        {ad.title}
+                      </h3>
+                      
+                      <p className="text-slate-300 mb-4 leading-relaxed">
+                        {ad.description}
+                      </p>
+                      
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {ad.keywords.map((keyword, idx) => (
+                          <span
+                            key={idx}
+                            className="px-3 py-1 bg-slate-700/50 border border-slate-600/50 rounded-lg text-slate-300 text-sm"
+                          >
+                            {keyword}
+                          </span>
+                        ))}
+                      </div>
+                      
+                      <div className="mt-4 pt-4 border-t border-slate-700/50">
+                        <div className="text-sm font-semibold text-purple-300 mb-2">
+                          Why this ad?
+                        </div>
+                        <p className="text-sm text-slate-400 leading-relaxed">
+                          {ad.explanation}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 

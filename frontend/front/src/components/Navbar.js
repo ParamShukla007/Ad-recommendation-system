@@ -3,16 +3,16 @@ import { styled } from 'styled-components';
 
 const NavbarContainer = styled.nav`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: white;
-  border: 6px solid black;
   padding: 20px 40px;
   margin-top: 20px;
   width: 90%;
   margin-left: auto;
   margin-right: auto;
   height: 80px;
+  border-bottom: 2px solid black;
 `;
 
 const Title = styled.h1`
@@ -27,37 +27,10 @@ const Title = styled.h1`
   font-style: normal;
 `;
 
-const TryItNow = styled.span`
-  color: black;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 1.5rem;
-  font-weight: bold;
-  cursor: pointer;
-  position: relative;
-
-  &:after {
-    content: ' →';
-  }
-
-  &:hover {
-    &:before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 2px;
-      bottom: -4px;
-      left: 0;
-      background-color: black;
-      transition: width 0.3s ease;
-    }
-  }
-`;
-
 function Navbar() {
   return (
     <NavbarContainer>
       <Title>AD Reco</Title>
-      <TryItNow>Try it now</TryItNow>
     </NavbarContainer>
   );
 }
