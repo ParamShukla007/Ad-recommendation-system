@@ -1,0 +1,23 @@
+{
+  "name": "ad-recommender-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.9.0",
+    "axios": "^1.13.1",
+    "cheerio": "^1.0.0-rc.12",
+    "cors": "^2.8.5",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.0",
+    "openai": "^4.9.0",
+    "undici": "^5.29.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
