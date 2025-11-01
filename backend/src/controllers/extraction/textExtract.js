@@ -63,6 +63,25 @@ export async function summarizeAndExtract(req, res) {
       });
       matchedAds = pyRes.data;
       matchedAds.sort((a, b) => b.similarity - a.similarity);
+      matchedAds = matchedAds.slice(0, 6); // Limit to top 10
+
+      // Generate explanation for each ad using Gemini
+      for (let ad of matchedAds) {
+        const explanationPrompt = `Explain in 2-3 lines why the following ad matches the webpage and why it should be placed here.\nWebpage summary: ${summary}\nAd title: ${ad.title}\nAd description: ${ad.description}\nAd keywords: ${ad.keywords.join(", ")}`;
+        try {
+          const explanationModel = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+          const explanationResult = await explanationModel.generateContent(explanationPrompt);
+          let explanationText = explanationResult.response.text();
+          // Remove code block formatting if present
+          const expMatch = explanationText.match(/```[a-zA-Z]*\s*([\s\S]*?)```/);
+          if (expMatch) {
+            explanationText = expMatch[1];
+          }
+          ad.explanation = explanationText.trim();
+        } catch (expErr) {
+          ad.explanation = "Explanation not available.";
+        }
+      }
     }
 
     res.json({ summary, keywords, matchedAds });
