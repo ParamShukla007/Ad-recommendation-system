@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { Sparkles, Zap, Target } from 'lucide-react';
+import { Sparkles, Zap, Target, Rocket, Search, ArrowRight, Star } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
 function Hero() {
   const [url, setUrl] = useState('');
@@ -39,131 +45,167 @@ function Hero() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50">
       {/* Animated Background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
-        <div className="absolute bottom-1/4 left-1/2 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-2000"></div>
-      </div>
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.1 }}
+        transition={{ duration: 2 }}
+        className="fixed inset-0 overflow-hidden pointer-events-none"
+      >
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
+        <div className="absolute bottom-1/4 left-1/2 w-96 h-96 bg-sky-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-2000"></div>
+      </motion.div>
 
       {/* Hero Section */}
       <div className="relative z-10 container mx-auto px-6 py-20">
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/20 backdrop-blur-sm border border-purple-500/30 rounded-full mb-6">
-            <Sparkles className="w-4 h-4 text-purple-300" />
-            <span className="text-purple-200 text-sm font-medium">AI-Powered Ad Matching</span>
-          </div>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-4xl mx-auto text-center mb-16"
+        >
+          <Badge variant="secondary" className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-white/80 backdrop-blur-sm border border-slate-200">
+            <Rocket className="w-4 h-4 text-blue-600" />
+            <span className="text-slate-700">AI-Powered Ad Matching</span>
+          </Badge>
           
-          <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
+          <motion.h1 
+            className="text-6xl md:text-7xl font-bold text-slate-900 mb-6 leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+          >
             Find Perfect Ads
-            <span className="block bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text">
+            <motion.span 
+              className="block bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+            >
               For Your Content
-            </span>
-          </h1>
-          
-          <p className="text-xl text-slate-300 mb-12 max-w-2xl mx-auto">
+            </motion.span>
+          </motion.h1>
+
+          <motion.p 
+            className="text-xl text-slate-600 mb-12 max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+          >
             Our AI analyzes your webpage and matches it with the most relevant ads using advanced machine learning
-          </p>
+          </motion.p>
 
           {/* Input Section */}
-          <div className="relative max-w-2xl mx-auto">
-            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-25"></div>
-            <div className="relative bg-slate-800/90 backdrop-blur-xl p-3 rounded-2xl border border-slate-700/50 shadow-2xl">
+          <Card className="relative max-w-2xl mx-auto bg-white/70 backdrop-blur-xl border-slate-200 shadow-sm">
+            <CardContent className="p-3">
               <div className="flex gap-3">
-                <input
+                <Input
                   type="url"
                   placeholder="Enter your webpage URL..."
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
                   disabled={loading}
-                  className="flex-1 px-6 py-4 bg-slate-900/50 border border-slate-600/50 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-purple-500 transition-all text-lg"
+                  className="flex-1 bg-white/50 border-slate-200"
                   onKeyPress={(e) => e.key === 'Enter' && handleCheck()}
                 />
-                <button
+                <Button
                   onClick={handleCheck}
                   disabled={loading}
-                  className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold rounded-xl transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-lg"
+                  className="px-8 bg-blue-600 hover:bg-blue-700 transition-colors"
                 >
                   {loading ? (
                     <>
-                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div>
                       Analyzing...
                     </>
                   ) : (
                     <>
-                      <Zap className="w-5 h-5" />
+                      <Search className="w-5 h-5 mr-2" />
                       Analyze
                     </>
                   )}
-                </button>
+                </Button>
               </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
 
           {error && (
-            <div className="mt-6 p-4 bg-red-500/20 backdrop-blur-sm border border-red-500/50 rounded-xl text-red-200">
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-600"
+            >
               {error}
-            </div>
+            </motion.div>
           )}
-        </div>
+        </motion.div>
 
         {/* Results Section */}
         {result && (
-          <div className="max-w-6xl mx-auto space-y-8 animate-in fade-in duration-700">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-6xl mx-auto space-y-8"
+          >
             {/* Summary Card */}
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition"></div>
-              <div className="relative bg-slate-800/90 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/50 shadow-2xl">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl">
+            <Card className="bg-white/70 backdrop-blur-xl border-slate-200 shadow-sm">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="p-3 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl">
                     <Target className="w-6 h-6 text-white" />
                   </div>
-                  <h2 className="text-3xl font-bold text-white">Webpage Analysis</h2>
+                  <h2 className="text-3xl font-bold text-slate-900">Webpage Analysis</h2>
                 </div>
-                
-                <p className="text-lg text-slate-300 leading-relaxed mb-6">
+              </CardHeader>
+              <CardContent>
+                <p className="text-lg text-slate-600 leading-relaxed mb-6">
                   {result.summary}
                 </p>
                 
                 <div className="flex flex-wrap gap-3">
                   {result.keywords.map((keyword, index) => (
-                    <span
+                    <Badge
                       key={index}
-                      className="px-4 py-2 bg-gradient-to-r from-purple-600/30 to-pink-600/30 backdrop-blur-sm border border-purple-500/30 rounded-lg text-purple-200 font-medium hover:from-purple-600/50 hover:to-pink-600/50 transition-all"
+                      variant="secondary"
+                      className="bg-blue-50 text-blue-700 hover:bg-blue-100"
                     >
                       {keyword}
-                    </span>
+                    </Badge>
                   ))}
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
 
             {/* Recommended Ads */}
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition"></div>
-              <div className="relative bg-slate-800/90 backdrop-blur-xl p-8 rounded-3xl border border-slate-700/50 shadow-2xl">
-                <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
-                  <Sparkles className="w-8 h-8 text-purple-400" />
+            <Card className="bg-white/70 backdrop-blur-xl border-slate-200 shadow-sm">
+              <CardHeader>
+                <h2 className="text-3xl font-bold text-slate-900 flex items-center gap-3">
+                  <Star className="w-8 h-8 text-blue-600" />
                   Recommended Ads
                 </h2>
-                
+              </CardHeader>
+              <CardContent>
                 <div className="grid md:grid-cols-2 gap-6">
                   {result.matchedAds && result.matchedAds.map((ad, index) => (
-                    <div
+                    <motion.div
                       key={ad._id}
-                      className="group/card relative bg-slate-900/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-700/50 hover:border-purple-500/50 transition-all hover:transform hover:scale-[1.02] shadow-lg"
-                      style={{ animationDelay: `${index * 100}ms` }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="group relative bg-white/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-200 hover:border-blue-200 transition-all hover:scale-[1.02] shadow-sm"
                     >
                       <div className="absolute top-4 right-4 px-3 py-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full text-white text-sm font-bold">
                         {Math.round(ad.similarity * 100)}% Match
                       </div>
                       
-                      <h3 className="text-2xl font-bold text-white mb-3 pr-20">
+                      <h3 className="text-2xl font-bold text-slate-900 mb-3 pr-20">
                         {ad.title}
                       </h3>
                       
-                      <p className="text-slate-300 mb-4 leading-relaxed">
+                      <p className="text-slate-600 mb-4 leading-relaxed">
                         {ad.description}
                       </p>
                       
@@ -171,27 +213,27 @@ function Hero() {
                         {ad.keywords.map((keyword, idx) => (
                           <span
                             key={idx}
-                            className="px-3 py-1 bg-slate-700/50 border border-slate-600/50 rounded-lg text-slate-300 text-sm"
+                            className="px-3 py-1 bg-slate-100 border border-slate-200 rounded-lg text-slate-600 text-sm"
                           >
                             {keyword}
                           </span>
                         ))}
                       </div>
                       
-                      <div className="mt-4 pt-4 border-t border-slate-700/50">
-                        <div className="text-sm font-semibold text-purple-300 mb-2">
+                      <div className="mt-4 pt-4 border-t border-slate-200">
+                        <div className="text-sm font-semibold text-blue-600 mb-2">
                           Why this ad?
                         </div>
-                        <p className="text-sm text-slate-400 leading-relaxed">
+                        <p className="text-sm text-slate-500 leading-relaxed">
                           {ad.explanation}
                         </p>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
-              </div>
-            </div>
-          </div>
+              </CardContent>
+            </Card>
+          </motion.div>
         )}
       </div>
     </div>
